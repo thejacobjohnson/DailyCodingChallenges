@@ -38,7 +38,11 @@ def create_matrix(size):
     return matrix
 
 def replace_pixel(matrix, location, C, original_C = ""):
-    if matrix[location[0]][location[1]] == C:
+    try:
+        if matrix[location[0]][location[1]] == C:
+            return matrix
+    except IndexError:
+        print(f'Location not in matrix, ending.')
         return matrix
 
     if original_C == "":
@@ -71,7 +75,11 @@ def replace_pixel(matrix, location, C, original_C = ""):
     return matrix
 
 def replace_pixel_corners(matrix, location, C, original_C = ""):
-    if matrix[location[0]][location[1]] == C:
+    try:
+        if matrix[location[0]][location[1]] == C:
+            return matrix
+    except IndexError:
+        print(f'Location not in matrix, ending.')
         return matrix
 
     if original_C == "":
@@ -117,18 +125,24 @@ def replace_pixel_corners(matrix, location, C, original_C = ""):
 original_matrix = create_matrix((10,10))
 
 replace_matrix = replace_pixel(original_matrix, (5,5), "R")
-for i in replace_matrix:
-    for j in i:
-        print(j, end=' ')
+try:
+    for i in replace_matrix:
+        for j in i:
+            print(j, end=' ')
+        print()
     print()
-print()
+except IndexError:
+    print(f'Location not in matrix, ending.')
 
 replace_matrix_corners = replace_pixel_corners(original_matrix, (5,5), "R")
-for i in replace_matrix_corners:
-    for j in i:
-        print(j, end=' ')
+try:
+    for i in replace_matrix_corners:
+        for j in i:
+            print(j, end=' ')
+        print()
     print()
-print()
+except IndexError:
+    print(f'Location not in matrix, ending.')
 
 '''Answer: I decided on using recursion here, and created two solutions. One only works in straight lines (up, left, right, down)
  to change the pixel, the other counts "corners" (diagonally) as being adjacent as well. In an actual interview or during a task,
