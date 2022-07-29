@@ -37,7 +37,7 @@ def create_matrix(size):
     print('\n')
     return matrix
 
-def replace_pixel(matrix, location, C, original_C = ""):
+def replace_pixel(matrix, location, C, original_C = ""): 
     try:
         if matrix[location[0]][location[1]] == C:
             return matrix
@@ -51,8 +51,9 @@ def replace_pixel(matrix, location, C, original_C = ""):
     if matrix[location[0]][location[1]] != original_C:
         return matrix
 
-    print(f'height = {len(matrix)-1}  width = {len(matrix[0])-1}  location = {location}')
-    print(f'original_C = {original_C} current color = {matrix[location[0]][location[1]]}')
+    # Prints for debugging.
+    # print(f'height = {len(matrix)-1}  width = {len(matrix[0])-1}  location = {location}')
+    # print(f'original_C = {original_C} current color = {matrix[location[0]][location[1]]}')
 
     matrix[location[0]][location[1]] = C
 
@@ -122,9 +123,9 @@ def replace_pixel_corners(matrix, location, C, original_C = ""):
             matrix = replace_pixel(matrix, (location[0],location[1]-1), C, original_C)
     return matrix
 
-original_matrix = create_matrix((10,10))
+original_matrix = create_matrix((5,5))
 
-replace_matrix = replace_pixel(original_matrix, (5,5), "R")
+replace_matrix = replace_pixel(original_matrix, (2,2), "R")
 try:
     for i in replace_matrix:
         for j in i:
@@ -134,7 +135,7 @@ try:
 except IndexError:
     print(f'Location not in matrix, ending.')
 
-replace_matrix_corners = replace_pixel_corners(original_matrix, (5,5), "R")
+replace_matrix_corners = replace_pixel_corners(original_matrix, (2,2), "R")
 try:
     for i in replace_matrix_corners:
         for j in i:
